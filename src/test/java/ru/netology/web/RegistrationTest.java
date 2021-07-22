@@ -1,6 +1,7 @@
 package ru.netology.web;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
@@ -8,9 +9,15 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationTest {
+
+    @BeforeEach
+    void setUp() {
+        open("http://localhost:9999");
+    }
+
     @Test
     void shouldReturnPositiveMessage(){
-        open("http://localhost:9999");
+
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Петр Петров");
         form.$("[data-test-id=phone] input").setValue("+79270000000");
@@ -22,7 +29,7 @@ public class RegistrationTest {
 
     @Test
     void shouldReturnNegativeMessageForErrorName(){
-        open("http://localhost:9999");
+
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Petr Petrov");
         form.$("[data-test-id=phone] input").setValue("+79270000000");
@@ -33,7 +40,7 @@ public class RegistrationTest {
     }
     @Test
     void shouldReturnNegativeMessageForEmptyName(){
-        open("http://localhost:9999");
+
         SelenideElement form = $(".form");
         form.$("[data-test-id=phone] input").setValue("+79270000000");
         form.$("[data-test-id=agreement]").click();
@@ -43,7 +50,7 @@ public class RegistrationTest {
 
     @Test
     void shouldReturnNegativeMessageForErrorTelephone(){
-        open("http://localhost:9999");
+
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Петр Петров");
         form.$("[data-test-id=phone] input").setValue("+7927000000001");
@@ -55,7 +62,7 @@ public class RegistrationTest {
 
     @Test
     void shouldReturnNegativeMessageForEmptyTelephone(){
-        open("http://localhost:9999");
+
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Петр Петров");
         form.$("[data-test-id=agreement]").click();
@@ -64,7 +71,7 @@ public class RegistrationTest {
     }
     @Test
     void shouldReturnNegativeMessageForCheckbox(){
-        open("http://localhost:9999");
+        
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Петр Петров");
         form.$("[data-test-id=phone] input").setValue("+79270000000");
